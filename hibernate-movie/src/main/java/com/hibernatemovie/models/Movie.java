@@ -1,4 +1,4 @@
-package com.hibernatemovie.entities;
+package com.hibernatemovie.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,7 +15,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
     private int id;
-    @Column(length = 30, nullable = false)
+    @Column(length = 50, nullable = false)
     private String title;
     @Column(length = 200, nullable = false)
     private String genre;
@@ -23,12 +23,12 @@ public class Movie {
     private int releaseYear;
     @Column(length = 20, nullable = true)
     private String director;
-    @Column(name = "picture_url", length = 100, nullable = true)
+    @Column(name = "picture_url", length = 200, nullable = true)
     private String pictureURL;
-    @Column(name = "trailer_link", length = 100, nullable = true)
+    @Column(name = "trailer_link", length = 200, nullable = true)
     private String trailerLink;
     @ManyToOne
-    @JoinColumn(name = "franchise_id", referencedColumnName = "franchise_id")
+    @JoinColumn(name = "franchise_id", referencedColumnName = "franchise_id", nullable = true)
     private Franchise franchise;
     @ManyToMany
     private Set<Character> characters;

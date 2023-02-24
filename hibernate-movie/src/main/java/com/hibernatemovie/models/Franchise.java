@@ -1,4 +1,4 @@
-package com.hibernatemovie.entities;
+package com.hibernatemovie.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;

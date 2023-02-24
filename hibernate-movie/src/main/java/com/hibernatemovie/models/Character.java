@@ -1,4 +1,4 @@
-package com.hibernatemovie.entities;
+package com.hibernatemovie.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,13 +15,13 @@ public class Character {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "character_id")
     private int id;
-    @Column(length = 20, nullable = false)
+    @Column(length = 100, nullable = false)
     private String name;
-    @Column(length = 20, nullable = false)
+    @Column(length = 200, nullable = true)
     private String alias;
     @Column(length = 20, nullable = false)
     private String gender;
-    @Column(name = "picture_URL", nullable = false)
+    @Column(length = 500, name = "picture_URL", nullable = true)
     private String pictureURL;
     @ManyToMany(mappedBy = "characters")
     private Set<Movie> movies;
