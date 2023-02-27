@@ -4,10 +4,11 @@ import com.hibernatemovie.models.Character;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CharacterRepository extends JpaRepository<Character,Integer> {
 
-    List<Character> findAllById(Integer id);
+    Optional<Character> findById(Integer id);
 
     List<Character> findAllByName(String name);
 
