@@ -1,5 +1,6 @@
 package com.hibernatemovie.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +25,6 @@ public class Character {
     @Column(length = 500, name = "picture_URL", nullable = true)
     private String pictureURL;
     @ManyToMany(mappedBy = "characters")
+    @JsonIgnore
     private Set<Movie> movies;
 }

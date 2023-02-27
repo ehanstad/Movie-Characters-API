@@ -1,5 +1,6 @@
 package com.hibernatemovie.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,5 +21,6 @@ public class Franchise {
     @Column(length = 250, nullable = false)
     private String description;
     @OneToMany(mappedBy = "franchise")
+    @JsonIgnore
     private Set<Movie> movies;
 }
