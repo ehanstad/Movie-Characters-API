@@ -4,10 +4,11 @@ import com.hibernatemovie.models.Franchise;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FranchiseRepository extends JpaRepository<Franchise, Integer> {
 
-    List<Franchise> findAllById (Integer id);
+    Optional<Franchise> findById (Integer id);
 
     List<Franchise> findAllByName(String name);
 

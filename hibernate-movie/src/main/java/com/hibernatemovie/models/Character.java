@@ -16,8 +16,8 @@ public class Character {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "character_id")
     private int id;
-    @Column(length = 100, nullable = false)
-    private String name;
+    @Column(length = 100, nullable = false, name = "full_name")
+    private String fullName;
     @Column(length = 200, nullable = true)
     private String alias;
     @Column(length = 20, nullable = false)

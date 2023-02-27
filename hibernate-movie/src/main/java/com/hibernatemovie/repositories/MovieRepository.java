@@ -4,10 +4,11 @@ import com.hibernatemovie.models.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MovieRepository extends JpaRepository<Movie,Integer > {
 
-    List<Movie> findAllById (Integer id);
+    Optional<Movie> findById (Integer id);
 
     List<Movie> findByTitle (String title);
 
