@@ -1,7 +1,6 @@
 package com.hibernatemovie.controllers;
 
 import com.hibernatemovie.mappers.CharacterMapper;
-import com.hibernatemovie.models.Character;
 import com.hibernatemovie.models.dtos.CharacterDTO;
 import com.hibernatemovie.services.character.CharacterService;
 import com.hibernatemovie.util.ApiErrorResponse;
@@ -36,8 +35,8 @@ public class CharacterController {
     })
     @GetMapping
     public ResponseEntity<Collection<CharacterDTO>> getAll() {
-        Collection<CharacterDTO> chars = characterMapper.characterToCharacterDto(characterService.findAll());
-        return ResponseEntity.ok(chars);
+        Collection<CharacterDTO> characterDTOs = characterMapper.characterToCharacterDto(characterService.findAll());
+        return ResponseEntity.ok(characterDTOs);
     }
 
     @Operation(summary = "Get character by ID")
@@ -50,7 +49,7 @@ public class CharacterController {
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ApiErrorResponse.class)) })
     })
     @GetMapping("{id}")
-    public ResponseEntity getById(@PathVariable int id) {
+    public ResponseEntity<CharacterDTO> getById(@PathVariable int id) {
         CharacterDTO charDTO = characterMapper.characterToCharacterDto(characterService.findById(id));
         return ResponseEntity.ok(charDTO);
     }

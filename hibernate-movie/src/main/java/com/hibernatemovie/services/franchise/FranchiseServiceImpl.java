@@ -18,11 +18,13 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     /**
-     * @param integer
+     * @param id
      * @return
      */
     @Override
-    public Franchise findById(Integer integer) {
+    public Franchise findById(Integer id) {
+        if (id != null)
+            return franchiseRepository.findById(id).get();
         return null;
     }
 
@@ -31,7 +33,7 @@ public class FranchiseServiceImpl implements FranchiseService {
      */
     @Override
     public Collection<Franchise> findAll() {
-        return null;
+        return franchiseRepository.findAll();
     }
 
     /**
@@ -40,7 +42,7 @@ public class FranchiseServiceImpl implements FranchiseService {
      */
     @Override
     public Franchise add(Franchise entity) {
-        return null;
+        return franchiseRepository.save(entity);
     }
 
     /**
@@ -49,14 +51,23 @@ public class FranchiseServiceImpl implements FranchiseService {
      */
     @Override
     public Franchise update(Franchise entity) {
-        return null;
+        return franchiseRepository.save(entity);
     }
 
     /**
-     * @param integer
+     * @param id
      */
     @Override
-    public void deleteById(Integer integer) {
+    public void deleteById(Integer id) {
+        franchiseRepository.deleteById(id);
+    }
 
+    /**
+     * @param name
+     * @return
+     */
+    @Override
+    public Collection<Franchise> findByName(String name) {
+        return franchiseRepository.findByName(name);
     }
 }
