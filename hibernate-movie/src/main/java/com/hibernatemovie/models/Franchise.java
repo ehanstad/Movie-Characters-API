@@ -21,6 +21,5 @@ public class Franchise {
     @Column(length = 250, nullable = false)
     private String description;
     @OneToMany(mappedBy = "franchise")
-    @JsonIgnore
     private Set<Movie> movies;
 }

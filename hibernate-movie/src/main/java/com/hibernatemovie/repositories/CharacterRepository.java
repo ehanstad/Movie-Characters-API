@@ -20,4 +20,6 @@ public interface CharacterRepository extends JpaRepository<Character,Integer> {
     List<Character> findAllByAlias(String alias);
 
     List<Character> findAllByGender(String gender);
+
+    //Character save(Character character);
 }

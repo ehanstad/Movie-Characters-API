@@ -18,7 +18,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * @param integer
+     * @param id
      * @return
      */
     @Override
@@ -70,6 +70,8 @@ public class CharacterServiceImpl implements CharacterService {
      */
     @Override
     public Character add(Character entity) {
+        if (entity != null)
+            return characterRepository.save(entity);
         return null;
     }
 
@@ -79,14 +81,19 @@ public class CharacterServiceImpl implements CharacterService {
      */
     @Override
     public Character update(Character entity) {
-        return null;
+        return characterRepository.save(entity);
     }
 
     /**
-     * @param integer
+     * @param id
      */
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer id) {
+        if (characterRepository.existsById(id)) {
+          Character character = characterRepository.findById(id).get();
+          character.getMovies().forEach(movie -> movie.setCharacters(null));
+          characterRepository.delete(character);
+        } else
+            logger.warn("No character exists with ID: " + id);
     }
 }

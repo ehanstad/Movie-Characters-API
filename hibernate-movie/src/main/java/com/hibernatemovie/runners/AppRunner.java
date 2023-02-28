@@ -24,7 +24,5 @@ public class AppRunner implements ApplicationRunner {
 
     @Override
     @Transactional
-    public void run(ApplicationArguments args) throws Exception {
-        System.out.println(characterService.findAll());
-    }
+    public void run(ApplicationArguments args) throws Exception { }
 }
