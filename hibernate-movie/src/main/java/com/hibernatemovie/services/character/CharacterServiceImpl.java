@@ -57,6 +57,24 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
+     * @param movieId
+     * @return
+     */
+    @Override
+    public Collection<Character> findByMovieId(Integer movieId) {
+        return characterRepository.findByMoviesId(movieId);
+    }
+
+    /**
+     * @param franchiseId
+     * @return
+     */
+    @Override
+    public Collection<Character> findByMoviesFranchiseId(Integer franchiseId) {
+        return characterRepository.findByMoviesFranchiseId(franchiseId);
+    }
+
+    /**
      * @return
      */
     @Override
