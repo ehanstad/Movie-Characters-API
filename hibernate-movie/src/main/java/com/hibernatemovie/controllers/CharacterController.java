@@ -145,4 +145,28 @@ public class CharacterController {
         characterService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @Operation(summary = "Get all the characters in a movie")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Success",
+                    content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CharacterDTO.class))}),
+    })
+    @GetMapping("movie/{id}")
+    public ResponseEntity<Collection<CharacterDTO>> getCharactersByMovieId(@PathVariable int id) {
+        Collection<CharacterDTO> charsDTO = characterMapper.characterToCharacterDto(characterService.findByMovieId(id));
+        return ResponseEntity.ok(charsDTO);
+    }
+
+    @Operation(summary = "Get all the characters in a franchise")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Success",
+                    content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CharacterDTO.class))}),
+    })
+    @GetMapping("franchise/{id}")
+    public ResponseEntity<Collection<CharacterDTO>> getCharactersInFranchise(@PathVariable int id) {
+        Collection<CharacterDTO> charsDTO = characterMapper.characterToCharacterDto(characterService.findByMoviesFranchiseId(id));
+        return ResponseEntity.ok(charsDTO);
+    }
 }
