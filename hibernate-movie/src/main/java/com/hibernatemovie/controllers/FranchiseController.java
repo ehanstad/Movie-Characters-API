@@ -99,4 +99,19 @@ public class FranchiseController {
         franchiseService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @Operation(summary = "Update movies in a franchise")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204",
+                    description = "Successfully updated",
+                    content = { @Content(mediaType = "application/json", schema = @Schema(implementation = FranchiseDTO.class))}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not found",
+                    content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ApiErrorResponse.class)) })
+    })
+    @PutMapping("{id}/movies")
+    public ResponseEntity updateMoviesInAFranchise(@RequestBody Integer[] movieIDs, @PathVariable int id) {
+        franchiseService.updateMoviesInAFranchise(movieIDs, id);
+        return ResponseEntity.noContent().build();
+    }
 }
