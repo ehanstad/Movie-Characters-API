@@ -22,8 +22,38 @@ public class CharacterServiceImpl implements CharacterService {
      * @return
      */
     @Override
-    public Character findById(Integer integer) {
+    public Character findById(Integer id) {
+        if (id != null)
+            return characterRepository.findById(id).get();
         return null;
+    }
+
+    /**
+     *
+     * @param name
+     * @return
+     */
+    @Override
+    public Collection<Character> findByName(String name) {
+        return characterRepository.findAllByFullName(name);
+    }
+
+    /**
+     * @param alias
+     * @return
+     */
+    @Override
+    public Collection<Character> findByAlias(String alias) {
+        return characterRepository.findAllByAlias(alias);
+    }
+
+    /**
+     * @param gender
+     * @return
+     */
+    @Override
+    public Collection<Character> findByGender(String gender) {
+        return characterRepository.findAllByGender(gender);
     }
 
     /**

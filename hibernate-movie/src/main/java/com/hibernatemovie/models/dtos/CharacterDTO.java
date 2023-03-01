@@ -1,32 +1,17 @@
-package com.hibernatemovie.models;
+package com.hibernatemovie.models.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Set;
 
-@Getter
-@Setter
-@Entity
-@Table(name = "character")
-public class Character {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "character_id")
+@Data
+public class CharacterDTO {
     private int id;
-    @Column(length = 100, nullable = false, name = "full_name")
     private String fullName;
-    @Column(length = 200, nullable = true)
     private String alias;
-    @Column(length = 20, nullable = false)
     private String gender;
-    @Column(length = 500, name = "picture_URL", nullable = true)
     private String pictureURL;
-    @ManyToMany(mappedBy = "characters")
-    @JsonIgnore
-    private Set<Movie> movies;
+    private Set<Integer> movies;
 
     public int getId() {
         return id;
@@ -68,11 +53,11 @@ public class Character {
         this.pictureURL = pictureURL;
     }
 
-    public Set<Movie> getMovies() {
+    public Set<Integer> getMovies() {
         return movies;
     }
 
-    public void setMovies(Set<Movie> movies) {
+    public void setMovies(Set<Integer> movies) {
         this.movies = movies;
     }
 }
