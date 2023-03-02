@@ -8,6 +8,5 @@ import java.util.Collection;
 
 public interface FranchiseService extends CrudService<Franchise, Integer> {
     Collection<Franchise> findByName(String name);
-
     void updateMoviesInAFranchise(Integer[] movieIDs, Integer franchiseId);
 }

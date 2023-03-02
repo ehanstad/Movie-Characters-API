@@ -27,6 +27,4 @@ public abstract class FranchiseMapper {
     }
     @Mapping(target = "movies", ignore = true)
     public abstract Franchise franchiseDtoToFranchise(FranchiseDTO franchisesDTOs);
-    @Mapping(target = "movies", ignore = true)
-    public abstract Collection<Franchise> franchiseDtoToFranchise(Collection<FranchiseDTO> franchisesDTOs);
 }

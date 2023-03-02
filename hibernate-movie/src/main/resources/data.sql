@@ -1,4 +1,4 @@
--- Franchises --
+-- -- Franchises --
 INSERT INTO franchise (name, description) VALUES ('The Godfather', 'A tree run film franchise winning multiple awards');
 INSERT INTO franchise (name, description) VALUES ('Star wars', 'A now owned Disney franchise containing to many movies to count');
 

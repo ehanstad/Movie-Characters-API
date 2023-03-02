@@ -4,19 +4,14 @@ import com.hibernatemovie.models.Franchise;
 import com.hibernatemovie.models.Movie;
 import com.hibernatemovie.repositories.FranchiseRepository;
 import com.hibernatemovie.repositories.MovieRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class FranchiseServiceImpl implements FranchiseService {
-    private Logger logger = LoggerFactory.getLogger(FranchiseServiceImpl.class);
-    private FranchiseRepository franchiseRepository;
-    private MovieRepository movieRepository;
+    private final FranchiseRepository franchiseRepository;
+    private final MovieRepository movieRepository;
 
     public FranchiseServiceImpl(FranchiseRepository franchiseRepository, MovieRepository movieRepository) {
         this.franchiseRepository = franchiseRepository;
@@ -24,8 +19,9 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     /**
-     * @param id
-     * @return
+     * Finds a franchise by a movie id
+     * @param id an id for a franchise
+     * @return an instance of a franchise
      */
     @Override
     public Franchise findById(Integer id) {
@@ -35,7 +31,8 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     /**
-     * @return
+     * Finds all franchises
+     * @return a collection of instances of franchises
      */
     @Override
     public Collection<Franchise> findAll() {
@@ -43,25 +40,28 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     /**
-     * @param entity
-     * @return
+     * Adds a franchise to the database
+     * @param franchise an instance of the franchise to add
+     * @return an instance of a franchise
      */
     @Override
-    public Franchise add(Franchise entity) {
-        return franchiseRepository.save(entity);
+    public Franchise add(Franchise franchise) {
+        return franchiseRepository.save(franchise);
     }
 
     /**
-     * @param entity
-     * @return
+     * Updates a franchises values in the database
+     * @param franchise an instance of the updated franchise
+     * @return an instance of a franchise
      */
     @Override
-    public Franchise update(Franchise entity) {
-        return franchiseRepository.save(entity);
+    public Franchise update(Franchise franchise) {
+        return franchiseRepository.save(franchise);
     }
 
     /**
-     * @param id
+     * Deletes a franchise with a giving id
+     * @param id an id for a franchise
      */
     @Override
     public void deleteById(Integer id) {
@@ -69,8 +69,9 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     /**
-     * @param name
-     * @return
+     * Finds a collection of franchises that contains the string name
+     * @param name a name for a franchise
+     * @return a collection of instances of franchises
      */
     @Override
     public Collection<Franchise> findByName(String name) {
@@ -78,8 +79,9 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     /**
-     * @param movieIDs
-     * @param franchiseId
+     * Updates franchises movies
+     * @param movieIDs an array of movie ids
+     * @param franchiseId an id for the franchise to update
      */
     @Override
     public void updateMoviesInAFranchise(Integer[] movieIDs, Integer franchiseId) {
