@@ -9,18 +9,21 @@ import com.hibernatemovie.services.franchise.FranchiseService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.NullValueCheckStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public abstract class MovieMapper {
     @Autowired
-    FranchiseService franchiseService;
+    protected FranchiseService franchiseService;
     @Autowired
-    CharacterService characterService;
+    protected CharacterService characterService;
 
     @Mapping(target = "franchise", source = "franchise.id")
     @Mapping(target = "characters", source = "characters", qualifiedByName = "charactersToIds")
@@ -42,14 +45,15 @@ public abstract class MovieMapper {
 
     @Named("franchiseIdToFranchise")
     Franchise mapIdToFranchise(int id) {
-        System.out.println(id);
         return franchiseService.findById(id);
     }
 
     @Named("characterIdsToCharacters")
-    Set<Character> mapIdsToCharacters(Set<Integer> id) {
-        return id.stream()
-                .map( i -> characterService.findById(i))
-                .collect(Collectors.toSet());
+    Set<Character> mapIdsToCharacters(Set<Integer> ids) {
+        if (ids == null)
+            return null;
+        Set<Character> characters = new HashSet<>();
+        ids.stream().map( i -> characters.add(characterService.findById(i)));
+        return characters;
     }
 }

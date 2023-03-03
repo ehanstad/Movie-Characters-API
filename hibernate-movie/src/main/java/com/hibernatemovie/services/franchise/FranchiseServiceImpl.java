@@ -25,9 +25,10 @@ public class FranchiseServiceImpl implements FranchiseService {
      */
     @Override
     public Franchise findById(Integer id) {
-        if (id != null)
-            return franchiseRepository.findById(id).get();
-        return null;
+        System.out.println(id);
+        if (id == 0)
+            return null;
+        return franchiseRepository.findById(id).get();
     }
 
     /**

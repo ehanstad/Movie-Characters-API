@@ -4,8 +4,6 @@ import com.hibernatemovie.models.Character;
 import com.hibernatemovie.models.Movie;
 import com.hibernatemovie.repositories.CharacterRepository;
 import com.hibernatemovie.repositories.MovieRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -14,7 +12,6 @@ import java.util.Set;
 
 @Service
 public class MovieServiceImpl implements MovieService {
-    private final Logger logger = LoggerFactory.getLogger(MovieServiceImpl.class);
     private final MovieRepository movieRepository;
     private final CharacterRepository characterRepository;
 
@@ -30,9 +27,7 @@ public class MovieServiceImpl implements MovieService {
      */
     @Override
     public Movie findById(Integer id) {
-        if (id!=null)
-            return movieRepository.findById(id).get();
-        return null;
+        return movieRepository.findById(id).get();
     }
 
 

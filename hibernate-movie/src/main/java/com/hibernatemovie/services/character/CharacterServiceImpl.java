@@ -24,9 +24,7 @@ public class CharacterServiceImpl implements CharacterService {
      */
     @Override
     public Character findById(Integer id) {
-        if (id != null)
-            return characterRepository.findById(id).get();
-        return null;
+        return characterRepository.findById(id).get();
     }
 
     /**

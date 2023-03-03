@@ -1,6 +1,8 @@
 package com.hibernatemovie.controllers;
 
 import com.hibernatemovie.mappers.MovieMapper;
+import com.hibernatemovie.models.Movie;
+import com.hibernatemovie.models.dtos.FranchiseDTO;
 import com.hibernatemovie.models.dtos.MovieDTO;
 import com.hibernatemovie.services.movie.MovieService;
 import com.hibernatemovie.util.ApiErrorResponse;
@@ -14,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.Collection;
 
 @RestController
@@ -131,8 +134,11 @@ public class MovieController {
     })
     @PostMapping("add")
     public ResponseEntity add(@RequestBody MovieDTO movieDTO) {
-        movieService.add(movieMapper.movieDtoToMovie(movieDTO));
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        System.out.println(movieDTO);
+        Movie movie = movieService.add(movieMapper.movieDtoToMovie(movieDTO));
+        System.out.println(movie);
+        URI location = URI.create("movies/" + movie.getId());
+        return ResponseEntity.created(location).build();
     }
 
     @Operation(summary = "Update movie")
@@ -170,7 +176,16 @@ public class MovieController {
     }
 
 
-    // TODO Create delete function and fix add
+    // TODO fix add
+    @Operation(summary = "Delete movie")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204",
+                    description = "Successfully deleted",
+                    content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MovieDTO.class))}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not found",
+                    content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ApiErrorResponse.class)) })
+    })
     @DeleteMapping("{id}")
     public ResponseEntity deleteById(@PathVariable int id) {
         movieService.deleteById(id);
