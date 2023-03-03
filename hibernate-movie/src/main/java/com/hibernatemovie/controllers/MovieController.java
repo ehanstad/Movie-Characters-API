@@ -157,7 +157,7 @@ public class MovieController {
         movieService.update(
                 movieMapper.movieDtoToMovie(movieDTO)
         );
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Update a movies character by movie id")
@@ -172,7 +172,7 @@ public class MovieController {
     @PutMapping("update/{id}/characters")
     public ResponseEntity updateCharactersById(@RequestBody int[] characterIDs, @PathVariable int id) {
         movieService.updateCharactersById(characterIDs, id);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().build();
     }
 
 
