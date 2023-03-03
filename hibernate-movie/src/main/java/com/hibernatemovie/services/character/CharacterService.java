@@ -7,11 +7,8 @@ import java.util.Collection;
 
 public interface CharacterService extends CrudService<Character, Integer> {
     Collection<Character> findByName(String name);
-
     Collection<Character> findByAlias(String alias);
-
     Collection<Character> findByGender(String gender);
     Collection<Character> findByMovieId(Integer movieId);
-
     Collection<Character> findByMoviesFranchiseId(Integer franchiseId);
 }

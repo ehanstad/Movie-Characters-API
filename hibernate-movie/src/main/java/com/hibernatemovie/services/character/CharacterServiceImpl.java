@@ -18,20 +18,19 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * @param id
-     * @return
+     * Finds a character by a character id
+     * @param id an id for a character
+     * @return an instance of a character
      */
     @Override
     public Character findById(Integer id) {
-        if (id != null)
-            return characterRepository.findById(id).get();
-        return null;
+        return characterRepository.findById(id).get();
     }
 
     /**
-     *
-     * @param name
-     * @return
+     * Finds a collection of characters that contains the string name
+     * @param name a name of a character
+     * @return a collection of instances of characters
      */
     @Override
     public Collection<Character> findByName(String name) {
@@ -39,8 +38,9 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * @param alias
-     * @return
+     * Finds a collection of characters that contains the string alias
+     * @param alias an alias of a character
+     * @return a collection of instances of characters
      */
     @Override
     public Collection<Character> findByAlias(String alias) {
@@ -48,8 +48,9 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * @param gender
-     * @return
+     * Finds a collection of characters with a specific gender
+     * @param gender a gender of a character
+     * @return a collection of instances of characters
      */
     @Override
     public Collection<Character> findByGender(String gender) {
@@ -57,8 +58,9 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * @param movieId
-     * @return
+     * Finds a collection of characters for a specific movie
+     * @param movieId an id for a movie
+     * @return a collection of instances of characters
      */
     @Override
     public Collection<Character> findByMovieId(Integer movieId) {
@@ -66,8 +68,9 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * @param franchiseId
-     * @return
+     * Finds a collection of characters for a specific franchise
+     * @param franchiseId an id for a movie
+     * @return a collection of instances of characters
      */
     @Override
     public Collection<Character> findByMoviesFranchiseId(Integer franchiseId) {
@@ -75,7 +78,8 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * @return
+     * Finds all characters
+     * @return a collection of instances of characters
      */
     @Override
     public Collection<Character> findAll() {
@@ -83,27 +87,30 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     /**
-     * @param entity
-     * @return
+     * Adds a character to the database
+     * @param character an instance of the character to add
+     * @return an instance of a character
      */
     @Override
-    public Character add(Character entity) {
-        if (entity != null)
-            return characterRepository.save(entity);
+    public Character add(Character character) {
+        if (character != null)
+            return characterRepository.save(character);
         return null;
     }
 
     /**
-     * @param entity
-     * @return
+     * Updates a characters values in the database
+     * @param character an instance of the updated character
+     * @return an instance of a character
      */
     @Override
-    public Character update(Character entity) {
-        return characterRepository.save(entity);
+    public Character update(Character character) {
+        return characterRepository.save(character);
     }
 
     /**
-     * @param id
+     * Deletes a character with a giving id
+     * @param id an id for a character
      */
     @Override
     public void deleteById(Integer id) {
